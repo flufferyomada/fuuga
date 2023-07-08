@@ -9,28 +9,6 @@ const { join } = require("node:path");
 const { allowedNodeEnvironmentFlags } = require("process");
 const { request } = require('http');
 const xml = require("xmlhttprequest");
-//for the play command
-const {
-    joinVoiceChannel,
-    createAudioPlayer,
-    createAudioResource
-  } = require('@discordjs/voice');
-
-//const ytdl = require('ytdl-core');
-
-//const soundcloud = require('soundcloud-downloader').default;
-//const spotifyUri = require('spotify-uri');
-
-//weather gonna change
-//const wfoUrl = 'https://api.weather.gov/products/types/WFO/locations/{location}/issues/latest';
-//const spcUrl = 'https://api.weather.gov/products/types/SPC/locations/{location}/issues/latest';
-//const radarUrl = 'https://radar.weather.gov/ridge/lite/{id}_loop.gif';
-//const alertsUrl = 'https://www.weather.gov/images/hazards/';
-
-//OpenAI ChatGPT
-//const openai = require('openai');
-//const openaiApiKey = process.env.OPENAI_API_KEY; // Replace with your actual API key
-//openai.apiKey = openaiApiKey;
 
 let dispatcher;
 let queue = [];
