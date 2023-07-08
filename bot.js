@@ -4,11 +4,11 @@ const fetch = require('node-fetch');
 const fs = require("fs");
 const ess = require("./essentials.js");
 const voice = require('@discordjs/voice');
+//const { messageLink } = require("discord.js");
 const { join } = require("node:path");
 const { allowedNodeEnvironmentFlags } = require("process");
 const { request } = require('http');
 const xml = require("xmlhttprequest");
-
 let dispatcher;
 let queue = [];
 const { exec } = require('child_process');
@@ -26,7 +26,7 @@ const client = new Discord.Client({ intents: botIntent });
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity(
-        "omada.cafe", 
+        "~help~sex~shibe", 
         {
             type : Discord.ActivityType.Playing,
         }
@@ -58,21 +58,22 @@ client.on("messageCreate", async (msg) => {
             "\n`~valentine [(ask/get/del)] (ask){[target:@user]}` - Asks, gets, or removes a valentine." +
             "\n`~sex` uhh sexes.. the user..." +
             "\n`~vote [(kick/ban)]` - Initiates vote for option. Only available in servers where the bot has admin.\n" +
-            "\n __**Shop Mingame Commands**__" +
-            "\n`~balance [@user:optional]` Returns balance of user or mention." +
-            "\n~buy [page:int] [item:int]` - Purchases the item with the position on the given page." +
+            "\n **Shop Mingame Commands**" +
+            "\n\`~balance [@user:optional]\` Returns balance of user or mention.\n" +
+            "\n~buy [page:int] [item:int]\` - Purchases the item with the position on the given page." +
             "\n`~info [(job/item)] [page:int] [obj:int]` Gets information about the object on the given page of the given category.\n" + 
             "\n`~job [(work/apply/quit/current)] (apply){[page:int] [job:int]}` - Applies for, leaves, or works at a job. Work provides money and XP. Current displays job name.\n" +
             "\n`~jobs [page:int]\` Shows the given page in the job listing.\n" + 
             "\n `~shop [page:int]\` Shows the given page in the shop.\n" +
             "\n`~xp [target:@user]\` - Gets the XP of the user or mention.\n" +
             "\n**Developer Debug Tools**" +
-            "\n`~logfile`\* This will return a file of ALL logged commands. Over time, this file will get larger, and its contents may be moved." + 
+            "\n`~logfile`\* This will return a file of ALL logged commands. Over time, this file will get " + 
+            "larger, and its contents may be moved." + 
             "\n`~ping` checks the latency between the bot and the user");
 
           }
 
-          if (msg.content.toLocaleLowerCase().startsWith(`~ping`)) {
+        if (msg.content.toLocaleLowerCase().startsWith(`~ping`)) {
             msg.reply(`Pong! **(${Date.now() - msg.createdTimestamp}ms)**`)
             return;
         }
@@ -122,7 +123,7 @@ client.on("messageCreate", async (msg) => {
         if (msg.content.toLowerCase().startsWith('~valentine')) {
         const cmd = msg.content.toLowerCase().substring(11).trim();
         const usr = msg.mentions.users.first() || msg.author;
-
+        
         switch (cmd) {
           case "get":
             msg.reply(ess.getValentine(usr.id).txt);
@@ -188,14 +189,14 @@ client.on("messageCreate", async (msg) => {
             const type = splt[1];
             const page = parseInt(splt[2]) - 1;
             const obj = parseInt(splt[3]) - 1;
-
+          
             let ssm = null;
             if (type === 'item') {
               ssm = ess.getItemInfo(ess, page, obj, msg);
             } else if (type === 'job') {
               ssm = ess.getJobInfo(ess, page, obj, msg);
             }
-
+          
             if (ssm) {
               msg.reply(ssm);
             }
@@ -276,7 +277,7 @@ client.on("messageCreate", async (msg) => {
         if (msg.content.toLocaleLowerCase().startsWith('~ship')) {
             msg.reply("<333 <@"+msg.author.id+"> x <@"+msg.mentions.users.first().id+"> : "+(Math.floor(Math.random()*102)-1)+"% match.");
          }
-
+        
          if (msg.content.includes('~uwu')) {
             if (msg.content.match(/[lr]/gi)) {
                 const modifiedContent = msg.content.replace(/[lr]/gi, 'w');
@@ -287,16 +288,16 @@ client.on("messageCreate", async (msg) => {
                 const choices = ['rock', 'paper', 'scissors'];
                   // Get the user's choice (either 'rock', 'paper', or 'scissors')
                 const userChoice = args[0];
-
+                  
                   // If the user did not provide a valid choice, return an error message
                 if (!choices.includes(userChoice)) {
                     msg.reply('Please choose either rock, paper, or scissors!');
                     return;
                 }
-
+                  
                   // Randomly select the bot's choice
                 const botChoice = choices[Math.floor(Math.random() * choices.length)];
-
+                  
                   // Determine the winner based on the user's choice and the bot's choice
                 let result;
                     if (userChoice === botChoice) {
@@ -310,14 +311,14 @@ client.on("messageCreate", async (msg) => {
                   } else {
                     result = 'You lose!';
                   }
-
+                  
                   // Return the result in a message
                   msg.reply(`You chose **${userChoice}**, and I chose **${botChoice}**. ${result}`);
                 };
 
         if (msg.content.toLowerCase().startsWith(`~shibe`)) {
             msg.reply('getting your shibe :3');
-
+          
             try {
               const response = await fetch('http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=false');
               const shibeResult = await response.json();
@@ -330,7 +331,7 @@ client.on("messageCreate", async (msg) => {
 
           if (msg.content.toLowerCase().startsWith(`~cat`)) {
             msg.reply('snuggling w/ a cat :3');
-
+          
             try {
               const response = await fetch('http://shibe.online/api/cats?count=1&urls=true&httpsUrls=false');
               const catResult = await response.json();
@@ -343,7 +344,7 @@ client.on("messageCreate", async (msg) => {
 
           if (msg.content.toLowerCase().startsWith(`~bird`)) {
             msg.reply('snatching your birdie :3');
-
+          
             try {
               const response = await fetch('http://shibe.online/api/birds?count=1&urls=true&httpsUrls=false');
               const catResult = await response.json();
@@ -366,12 +367,11 @@ client.on("messageCreate", async (msg) => {
             }
         } 
 
-    } try(err) { //failsafe and log
+      } catch(err) {
         if (err.toString().match("ReferenceError: ess") || err.toString().match("ReferenceError: initLogData")) { return; }
         console.log(err);
-        ess.log(client);
+        ess.crash(client);
     }
-  }});
-
+});
 
 client.login(ess.sets.token);
