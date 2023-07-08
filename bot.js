@@ -4,7 +4,6 @@ const fetch = require('node-fetch');
 const fs = require("fs");
 const ess = require("./essentials.js");
 const voice = require('@discordjs/voice');
-//const { messageLink } = require("discord.js");
 const { join } = require("node:path");
 const { allowedNodeEnvironmentFlags } = require("process");
 const { request } = require('http');
