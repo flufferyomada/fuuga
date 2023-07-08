@@ -262,14 +262,6 @@ client.on("messageCreate", async (msg) => {
             }
         }
 
-        if (msg.content.toLocaleLowerCase().startsWith(`~whopper`)) {
-            msg.reply("https://cdn.discordapp.com/attachments/669796626784714756/1074666197611716699/TWD.mp4");
-            return;
-        }
-        if (msg.content.toLowerCase().startsWith('~kidnap')) {
-            msg.reply('https://cdn.discordapp.com/attachments/723599467172986962/1074336826464145589/trim.90D66A28-3AA2-4D37-A744-A6FD591DA6F0.mov');
-            return;
-        }
         if (msg.content.toLowerCase().startsWith('~coinflip')) {
             msg.reply(`:moneybag: It landed on **${Math.random() >= 0.5 ? 'heads' : 'tails'}**!`);
             return;
@@ -278,12 +270,6 @@ client.on("messageCreate", async (msg) => {
         if (msg.content.toLocaleLowerCase().startsWith('~ship')) {
             msg.reply("<333 <@"+msg.author.id+"> x <@"+msg.mentions.users.first().id+"> : "+(Math.floor(Math.random()*102)-1)+"% match.");
          }
-        
-         if (msg.content.includes('~uwu')) {
-            if (msg.content.match(/[lr]/gi)) {
-                const modifiedContent = msg.content.replace(/[lr]/gi, 'w');
-                msg.channel.send(`${modifiedContent}`);
-              }}
 
             if (msg.content.toLocaleLowerCase().startsWith('~rps')) {
                 const choices = ['rock', 'paper', 'scissors'];
